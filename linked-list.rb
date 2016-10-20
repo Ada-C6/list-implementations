@@ -21,18 +21,19 @@ class LinkedList
    def add(value)
        # Traverse to the end of the list
        # And insert a new node over there with the specified value
+       # Most common mistake is to move the head, rather than using current to traverse
        current = @head
        while current.next_node != nil
-           current = current.next_node
+           current = current.next_node # While that node isn't nil, move current to next node
        end
-       current.next_node = Node.new(value,nil)
+       current.next_node = Node.new(value,nil) # Create a new node with current's value
        self
    end
 
    def delete(val)
        current = @head
        if current.value == val
-           # If the head is the element to be delete, the head needs to be updated
+           # If the head is the element to be deleted, the head needs to be updated
            @head = @head.next_node
        else
            # ... x -> y -> z
