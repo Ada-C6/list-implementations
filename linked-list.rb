@@ -87,10 +87,19 @@ class LinkedList
        count += 1
        current = current.next_node
      end
-     return count   
+     return count
    end
 
    def max
+     current = @head
+     max = current
+     while current.next_node != nil
+       if current.next_node > max
+         max = current.next_node
+       end
+     end
+     return max
+
    end
 
 end
