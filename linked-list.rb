@@ -21,8 +21,8 @@ class LinkedList
    def add(value)
        # Traverse to the end of the list
        # And insert a new node over there with the specified value
-       current = @head
-       while current.next_node != nil
+       current = @head    ### The current is the node it's on now, and the next_node is the next one! (almost always need current)
+       while current.next_node != nil   ### This while loop pattern is EXTREMELY common
            current = current.next_node
        end
        current.next_node = Node.new(value,nil)
@@ -51,24 +51,50 @@ class LinkedList
    end
 
    def display
-       # Traverse through the list till you hit the "nil" at the end
-       current = @head
-       full_list = []
-       while current.next_node != nil
-           full_list += [current.value.to_s]
-           current = current.next_node
-       end
+    # Traverse through the list till you hit the "nil" at the end
+    current = @head
+    full_list = []
+    while current.next_node != nil
        full_list += [current.value.to_s]
-       puts full_list.join("->")
+       current = current.next_node
+    end
+    full_list += [current.value.to_s]
+    puts full_list.join("->")
    end
+
 
    def include?(key)
+    current = @head
+    answer = false
+    while answer == false && current.next_node != nil
+      answer = true if current.value == key
+      current = current.next_node
+    end
+    answer = true if current.value == key
+    return answer
    end
 
-   def size
+   def size  ## use display as the model
+    current = @head
+    total_length = 0
+    while current.next_node != nil
+      total_length += 1
+      current = current.next_node
+    end
+    total_length += 1
+    return total_length
    end
 
    def max
+    current = @head
+    return nil if @head.value == nil
+    max = @head.value
+
+    while current.next_node != nil
+      max = (current.next_node).value if (current.next_node).value > current.value
+      current = current.next_node
+    end
+    return max
    end
 
 end
@@ -87,6 +113,16 @@ ll.display
 puts "Delete 10 and then display the linked list:"
 ll.delete(10)
 ll.display
+
+puts "Max: #{ll.max}"
+puts "Size: #{ll.size}"
+puts "Include 10: #{ll.include?(10)}"
+puts "Include 20: #{ll.include?(20)}"
+puts "Include 3: #{ll.include?(3)}"
+
+ll.add(3)
+puts "Include 3: #{ll.include?(3)}"
+
 
 =begin
 Output:
