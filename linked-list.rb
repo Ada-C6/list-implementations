@@ -75,9 +75,17 @@ class LinkedList
   end
 
   def size
+    current = @head
+    size = 1
+    while current.next_node != nil
+      size += 1
+      current = current.next_node
+    end
+    return size
   end
 
   def max
+    
   end
 
 end
