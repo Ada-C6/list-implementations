@@ -85,9 +85,15 @@ class LinkedList
   end
 
   def max
-    
+    current = @head
+    return nil if @head.value == nil
+    max = @head.value
+    while current.next_node != nil
+      max = (current.next_node).value if (current.next_node).value > max
+      current = current.next_node
+    end
+    return max
   end
-
 end
 
 # Initializing a Linked List with a node containing value (5)
